@@ -3,7 +3,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { getUser, logout } from "../../services/auth_service";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { CircleUser, Menu, Package2, Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,6 +14,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import APP_ROUTES from "@/const/app_routes";
 import APP_MESSAGES from "@/const/app_messages";
 import AppLogo from "../components/AppLogo";
+import LogoutDropdownMenuButton from "./LogoutDropdownMenuButton";
 
 interface ProtectedLayoutProps {
 	children: ReactNode;
@@ -49,7 +50,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 
 	return (
 		<div>
-			<header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+			<header className="sticky top-0 flex justify-between h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
 				<nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
 					<Link href="#" className="flex items-center gap-2 text-lg font-semibold md:text-base">
 						<AppLogo />
@@ -80,13 +81,8 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 						</nav>
 					</SheetContent>
 				</Sheet>
-				<div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-					<form className="ml-auto flex-1 sm:flex-initial">
-						<div className="relative">
-							<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-							<Input type="search" placeholder={APP_MESSAGES.posts.search} className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]" />
-						</div>
-					</form>
+        
+				<div className="flex w-full justify-end items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
 					<h3 className="font-semibold">{user.first_name + " " + user.last_name}</h3>
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
@@ -102,6 +98,9 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 							<DropdownMenuItem>{APP_MESSAGES.profile.support}</DropdownMenuItem>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem>{APP_MESSAGES.profile.logout}</DropdownMenuItem>
+							<DropdownMenuItem>
+								<LogoutDropdownMenuButton />
+							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
 				</div>

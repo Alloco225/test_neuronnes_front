@@ -6,6 +6,7 @@ import DataTableFacetedFilter from "./DataTableFacetedFilter";
 import DataTableViewOptions from "./DataTableViewOptions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Menu, Search } from "lucide-react";
 
 interface DataTableToolbarProps<TData> {
 	table: Table<TData>;
@@ -17,12 +18,16 @@ export default function DataTableToolbar<TData>({ table }: DataTableToolbarProps
 	return (
 		<div className="flex items-center justify-between">
 			<div className="flex flex-1 items-center space-x-2">
-				<Input
-					placeholder="Filter tasks..."
-					value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-					className="h-8 w-[150px] lg:w-[250px]"
-					onChange={(e) => table.getColumn("title")?.setFilterValue(e.target.value)}
-				/>
+				<div className="relative">
+					<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+					<Input
+						placeholder="Filtrer"
+						value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+						className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
+						onChange={(e) => table.getColumn("title")?.setFilterValue(e.target.value)}
+					/>
+				</div>
+
 				{/* {table.getColumn("content") && <DataTableFacetedFilter column={table.getColumn("content")} title="Status" options={statuses} />} */}
 				{/* {table.getColumn("status") && <DataTableFacetedFilter column={table.getColumn("status")} title="Status" options={statuses} />}
 				{table.getColumn("priority") && <DataTableFacetedFilter column={table.getColumn("priority")} title="Priority" options={priorities} />} */}
