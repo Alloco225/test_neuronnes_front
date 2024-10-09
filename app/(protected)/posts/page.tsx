@@ -4,21 +4,25 @@ import React, { ReactNode, useEffect, useState } from "react";
 import PostsTable from "./PostsTable";
 import DataTable from "./components/DataTable";
 import {columns} from './components/columns';
+import { getPosts } from "@/services/post_service";
+import { Post } from "@/app/(protected)/posts/data/schema";
+
 
 const PostsPage = () => {
-	const [posts, setPosts] = useState([]);
+	const [posts, setPosts] = useState<Post[]>([]);
 
 	useEffect(() => {
 		const loadPosts = async () => {
-			const postsData = await getUser();
-
-			setUser(postsData);
+			const postsData = await getPosts();
+			if(!postsData){
+				// raise error
+				return;
+			}
+			setPosts(postsData);
 		};
 
 		loadPosts();
-	}, [router]);
-
-
+	}, []);
 
 	return (
 		<div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
