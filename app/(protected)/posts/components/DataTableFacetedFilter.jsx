@@ -10,21 +10,12 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
-interface DataTableFacetedFilter<TData> {
-	column?: Column<TData, any>;
-	title?: string;
-	options: {
-		label: string;
-		value: string;
-		icon?: React.ComponentType;
-	}[];
-}
 
-export default function DataTableFacetedFilter<TData>({ column, title, options }: DataTableFacetedFilter<TData>) {
+export default function DataTableFacetedFilter({ column, title, options }) {
 	const facets = useMemo(() => column?.getFacetedUniqueValues(), [column]);
-	const [selectedValues, setSelectedValues] = useState<Set<string>>(new Set(column?.getFilterValue() as string[]));
+	const [selectedValues, setSelectedValues] = useState(new Set(column?.getFilterValue()));
 
-	const handleSelect = (optionValue: string) => {
+	const handleSelect = (optionValue) => {
 		const newSelectedValues = new Set(selectedValues);
 		if (newSelectedValues.has(optionValue)) {
 			newSelectedValues.delete(optionValue);
@@ -74,7 +65,8 @@ export default function DataTableFacetedFilter<TData>({ column, title, options }
 						<CommandEmpty>No results found.</CommandEmpty>
 						<CommandGroup>
 							{options.map((option) => (
-								<CommandItem key={option.value} value={option} onSelect={() => handleSelect(option.value)}>
+								// <CommandItem key={option.value} value={option} onSelect={() => handleSelect(option.value)}>
+								<CommandItem key={option.value} >
 									<div
 										className={cn(
 											"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",

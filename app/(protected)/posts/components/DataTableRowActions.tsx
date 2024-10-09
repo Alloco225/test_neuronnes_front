@@ -17,17 +17,6 @@ import {
 	DropdownMenuTrigger,
 	DropdownMenuShortcut,
 } from "@/components/ui/dropdown-menu";
-// import {DropdownMenu} from '@/components/ui/dropdown-menu'
-// import 	{DropdownMenuContent} from '@/components/ui/dropdown-menu-content'
-// import 	{DropdownMenuItem} from '@/components/ui/dropdown-menu-item'
-// import 	{DropdownMenuRadioGroup} from '@/components/ui/dropdown-menu-radio-group'
-// import 	{DropdownMenuRadioItem} from '@/components/ui/dropdown-menu-radio-item'
-// import 	{DropdownMenuSeparator} from '@/components/ui/dropdown-menu-separator'
-// import 	{DropdownMenuSub} from '@/components/ui/dropdown-menu-sub'
-// import 	{DropdownMenuSubContent} from '@/components/ui/dropdown-menu-sub-content'
-// import 	{DropdownMenuSubTrigger} from '@/components/ui/dropdown-menu-sub-trigger'
-// import 	{DropdownMenuTrigger} from '@/components/ui/dropdown-menu-trigger'
-// import 	{DropdownMenuShortcut} from '@/components/ui/dropdown-menu-shortcut'
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
