@@ -9,14 +9,14 @@ export function middleware(req: NextRequest) {
 	// const token = localStorage.getItem("token"); 
 	const { pathname } = req.nextUrl;
 
-	if (!token && pathname.startsWith(APP_ROUTES.posts)) {
+	if (!token && pathname.startsWith(APP_ROUTES.posts.index)) {
 		// if ([APP_ROUTES.login, APP_ROUTES.register].includes(pathname)){
 		// 	return NextResponse.next();
 		// }
 		return NextResponse.redirect(new URL(APP_ROUTES.login, req.url));
 	}
 	if(token && [APP_ROUTES.login, APP_ROUTES.register].includes(pathname)){
-		return NextResponse.redirect(APP_ROUTES.posts);
+		return NextResponse.redirect(APP_ROUTES.posts.index);
 		// return NextResponse.redirect(req.url);
 	}
 	return NextResponse.next();

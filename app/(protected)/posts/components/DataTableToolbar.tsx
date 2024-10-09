@@ -6,7 +6,9 @@ import DataTableFacetedFilter from "./DataTableFacetedFilter";
 import DataTableViewOptions from "./DataTableViewOptions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Menu, Search } from "lucide-react";
+import { Menu, Search, Plus } from "lucide-react";
+import APP_ROUTES from "@/const/app_routes";
+import Link from "next/link";
 
 interface DataTableToolbarProps<TData> {
 	table: Table<TData>;
@@ -17,7 +19,7 @@ export default function DataTableToolbar<TData>({ table }: DataTableToolbarProps
 
 	return (
 		<div className="flex items-center justify-between">
-			<div className="flex flex-1 items-center space-x-2">
+			<div className="flex flex-1 justify-between items-center space-x-2">
 				<div className="relative">
 					<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
 					<Input
@@ -30,7 +32,7 @@ export default function DataTableToolbar<TData>({ table }: DataTableToolbarProps
 
 				{/* {table.getColumn("content") && <DataTableFacetedFilter column={table.getColumn("content")} title="Status" options={statuses} />} */}
 				{/* {table.getColumn("status") && <DataTableFacetedFilter column={table.getColumn("status")} title="Status" options={statuses} />}
-				{table.getColumn("priority") && <DataTableFacetedFilter column={table.getColumn("priority")} title="Priority" options={priorities} />} */}
+                    {table.getColumn("priority") && <DataTableFacetedFilter column={table.getColumn("priority")} title="Priority" options={priorities} />} */}
 				{isFiltered && (
 					<Button variant="ghost" className="h-8 px-2 lg:px-3" onClick={() => table.resetColumnFilters()}>
 						Reset
@@ -38,7 +40,15 @@ export default function DataTableToolbar<TData>({ table }: DataTableToolbarProps
 					</Button>
 				)}
 			</div>
-			<DataTableViewOptions table={table} />
+
+			<div className="flex">
+				<DataTableViewOptions table={table} />
+				<Link href={APP_ROUTES.posts.create}>
+					<Button>
+						<Plus className="mr-2 h-4 w-4" /> Ajouter un post
+					</Button>
+				</Link>
+			</div>
 		</div>
 	);
 }

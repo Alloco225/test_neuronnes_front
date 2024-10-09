@@ -26,7 +26,7 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			await login(email, password);
-			router.push(APP_ROUTES.posts);
+			router.push(APP_ROUTES.posts.index);
 		} catch (err) {
 			setError(APP_MESSAGES.auth.failed);
 		}

@@ -1,15 +1,12 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
-import { getUser, logout } from "../../services/auth_service";
+import { getUser } from "../../services/auth_service";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import APP_ROUTES from "@/const/app_routes";
 import APP_MESSAGES from "@/const/app_messages";
@@ -56,8 +53,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 						<AppLogo />
 						<span className="sr-only">{APP_MESSAGES.app_name}</span>
 					</Link>
-					{/* <Link href={APP_ROUTES.posts} className="{text-muted-foreground transition-colors hover:text-foreground}"> */}
-					<Link href={APP_ROUTES.posts} className="text-foreground transition-colors hover:text-foreground">
+					<Link href={APP_ROUTES.posts.index} className="text-foreground transition-colors hover:text-foreground">
 						Posts
 					</Link>
 				</nav>
@@ -75,7 +71,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 								<span className="sr-only">{APP_MESSAGES.app_name}</span>
 							</Link>
 
-							<Link href={APP_ROUTES.posts} className="hover:text-foreground">
+							<Link href={APP_ROUTES.posts.index} className="hover:text-foreground">
 								Posts
 							</Link>
 						</nav>
