@@ -86,7 +86,7 @@ export default function DataTableFacetedFilter({ column, title, options }) {
 								<CommandGroup>
 									{/* <CommandItem value={{ label: "Clear filters" }} className="justify-center text-center" onSelect={() => column?.setFilterValue(undefined)}> */}
 									<CommandItem className="justify-center text-center" onSelect={() => column?.setFilterValue(undefined)}>
-										Clear filters
+										Effacer les filtres
 									</CommandItem>
 								</CommandGroup>
 							</>

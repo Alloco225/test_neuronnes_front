@@ -15,7 +15,9 @@ import { AlertError } from "@/app/components/AlertError";
 import { storePost } from "@/services/post_service";
 import { useRef } from "react";
 import APP_ROUTES from "@/const/app_routes";
+import { useRouter } from "next/navigation";
 const PostForm = () => {
+	const router = useRouter();
 	const formRef = useRef<HTMLFormElement | null>(null);
 
 	const form = useForm<z.infer<typeof postSchema>>({

@@ -1,7 +1,6 @@
 
 
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Post } from "./data/schema";
 
 interface PostsTableInterface{
     posts: Post[]

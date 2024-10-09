@@ -5,7 +5,6 @@ import PostsTable from "./PostsTable";
 import DataTable from "./components/DataTable";
 import {columns} from './components/columns';
 import { getPosts } from "@/services/post_service";
-import { Post } from "@/app/(protected)/posts/data/schema";
 
 
 const PostsPage = () => {
@@ -25,7 +24,7 @@ const PostsPage = () => {
 	}, []);
 
 	return (
-		<div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
+		<div className=" h-full flex-1 flex-col space-y-8 p-8">
 			<div className="flex items-center justify-between space-y-2">
 				<div>
 					<h2 className="text-2xl font-bold tracking-tight">Bon retour!</h2>
@@ -33,7 +32,7 @@ const PostsPage = () => {
 				</div>
 				<div className="flex items-center space-x-2">{/* <UserNav /> */}</div>
 			</div>
-			<DataTable data={posts} columns={columns} />
+			<DataTable data={posts} columns={columns}  />
 			{/* <PostsTable posts={posts}></PostsTable> */}
 		</div>
 	);

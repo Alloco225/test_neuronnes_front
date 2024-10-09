@@ -13,7 +13,6 @@ import {
 	ColumnFiltersState,
 	VisibilityState,
 } from "@tanstack/react-table";
-import { Post } from "../data/schema"; // Import your Post type
 import DataTablePagination from "./DataTablePagination";
 import DataTableToolbar from "./DataTableToolbar";
 import { valueUpdater } from "@/helpers/helpers";
@@ -40,6 +39,7 @@ const DataTable: React.FC<DataTableProps> = ({ columns, data }) => {
 			rowSelection,
 		},
 		enableRowSelection: true,
+		
 		onSortingChange: (updaterOrValue) => valueUpdater(updaterOrValue, setSorting),
 		onColumnFiltersChange: (updaterOrValue) => valueUpdater(updaterOrValue, setColumnFilters),
 		onColumnVisibilityChange: (updaterOrValue) => valueUpdater(updaterOrValue, setColumnVisibility),
@@ -53,7 +53,7 @@ const DataTable: React.FC<DataTableProps> = ({ columns, data }) => {
 	});
 
 	return (
-		<div className="space-y-4">
+		<div className="space-y-4 md:bg-white md:p-5 rounded-md">
 			<DataTableToolbar table={table} />
 			<div className="rounded-md border">
 				<Table>

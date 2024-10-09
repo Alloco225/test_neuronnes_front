@@ -7,6 +7,8 @@ import DataTableColumnHeader from "./DataTableColumnHeader";
 import DataTableRowActions from "./DataTableRowActions";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import ServerImage from "@/app/components/ServerImage";
 
 export const columns = [
 	{
@@ -25,17 +27,29 @@ export const columns = [
 	},
 	{
 		accessorKey: "id",
-		header: ({ column }) => <DataTableColumnHeader column={column} title="Post" />,
+		header: ({ column }) => <DataTableColumnHeader column={column} title="#" />,
 		cell: ({ row }) => <div className="w-20">{row.getValue("id")}</div>,
 		enableSorting: false,
 		enableHiding: false,
 	},
 	{
+		accessorKey: "image_url",
+		header: ({ column }) => <DataTableColumnHeader column={column} title="#" />,
+		cell: ({ row }) => <div className="w-20">
+			<Image src={row.getValue("image_url")} width={50} height={50} className="object-contain" alt={row.getValue("title")}/>
+			{/* <ServerImage src={row.getValue("image_url")} alt={row.getValue("title")} /> */}
+		</div>,
+		enableSorting: false,
+		enableHiding: false,
+	},
+	{
 		accessorKey: "title",
-		header: ({ column }) => <DataTableColumnHeader column={column} title="Title" />,
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Titre" />,
 		cell: ({ row }) => {
+			return <div className="flex space-x-2">
+				<span className="max-w-[500px] truncate font-medium">{row.getValue("title")}</span>
+			</div>
 
-			return <Badge />;
 			const label = labels.find((label) => label.value === row.original.label);
 
 			return (
@@ -48,9 +62,11 @@ export const columns = [
 	},
 	{
 		accessorKey: "content",
-		header: ({ column }) => <DataTableColumnHeader column={column} title="Titre" />,
+		header: ({ column }) => <DataTableColumnHeader column={column} title="Contenu" />,
 		cell: ({ row }) => {
-			return <Badge />;
+			return <div className="flex space-x-2">
+				<span className="max-w-[500px] truncate font-medium">{row.getValue("title")}</span>
+			</div>
 
 			const label = labels.find((label) => label.value === row.original.label);
 
@@ -66,6 +82,7 @@ export const columns = [
 	
 	{
 		id: "actions",
-		cell: ({ row }) => <DataTableRowActions row={row} />,
+		// cell: ({ row }) =>  <DataTableRowActions row={row} />,
+		cell: ({ row }) =>  <div></div>,
 	},
 ];
