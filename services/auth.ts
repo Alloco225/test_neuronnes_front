@@ -1,36 +1,20 @@
-// services/auth.ts
+"use client"
+import APP_MESSAGES from "@/const/app_messages";
 import API from "./api";
 
-interface RegisterFormData {
-	first_name: string;
-	last_name: string;
-	age: string;
-	email: string;
-	password: string;
-	password_confirmation: string;
-}
-interface AuthResponse {
-	user: User;
-	token: string;
-}
 
-interface User {
-	id: number;
-	first_name: string;
-	last_name: string;
-	age: string;
-	email: string;
-}
-
-export const login = async (email: string, password: string): Promise<User> => {
+export const login = async (email: string, password: string): Promise<User|null> => {
 	const { data } = await API.post<AuthResponse>("/auth/login", { email, password });
 	if (data.token) {
 		localStorage.setItem("token", data.token);
 	}
+
+	document.cookie = `token=${data.token}; path=/`; //
 	return data.user;
 };
 
-export const register = async (input: RegisterFormData): Promise<User> => {
+export const register = async (input: RegisterFormData): Promise<User|null> => {
+
 	const { data } = await API.post<AuthResponse>("/auth/register", input);
 	if (data.token) {
 		localStorage.setItem("token", data.token);
@@ -38,8 +22,13 @@ export const register = async (input: RegisterFormData): Promise<User> => {
 	return data.user;
 };
 
-export const getUser = async (): Promise<User> => {
-	const token = localStorage.getItem("token");
+export const getUser = async (): Promise<User|null> => {
+	// const token = localStorage.getItem("token");
+	const token = document.cookie
+		.split("; ")
+		.find((row) => row.startsWith("token="))
+		?.split("=")[1];
+
 	if (token) {
 		const { data } = await API.get<User>("/user", {
 			headers: {
@@ -48,7 +37,8 @@ export const getUser = async (): Promise<User> => {
 		});
 		return data;
 	}
-	throw new Error("Not authenticated");
+	return null;
+	throw new Error(APP_MESSAGES.unauthenticated);
 };
 
 export const logout = async (): Promise<void> => {
