@@ -1,4 +1,4 @@
-import { logout } from "@/services/auth";
+import { logout } from "@/services/auth_service";
 
 const LogoutButton = () => {
 	return <button onClick={logout}>Logout</button>;

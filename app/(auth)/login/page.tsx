@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { login } from "@/services/auth";
+import { login } from "@/services/auth_service";
 import { useRouter } from "next/navigation";
 import APP_ROUTES from "@/const/app_routes";
 import APP_MESSAGES from "@/const/app_messages";

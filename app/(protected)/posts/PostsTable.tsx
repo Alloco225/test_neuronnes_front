@@ -1,4 +1,4 @@
-import React from "react";
+
 
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Post } from "./data/schema";
@@ -7,6 +7,8 @@ interface PostsTableInterface{
     posts: Post[]
 }
 const PostsTable = ({posts}: PostsTableInterface) => {
+
+
 	return (
 		<Table>
 			<TableCaption>List de vos postes.</TableCaption>

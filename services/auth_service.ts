@@ -1,6 +1,6 @@
 "use client"
 import APP_MESSAGES from "@/const/app_messages";
-import API from "./api";
+import API from "./api_service";
 import APP_ROUTES from "@/const/app_routes";
 
 const API_AUTH_ROUTES = {

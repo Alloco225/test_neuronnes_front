@@ -1,11 +1,23 @@
 "use client"
-import React, { useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
+
 import PostsTable from "./PostsTable";
 import DataTable from "./components/DataTable";
 import {columns} from './components/columns';
 
 const PostsPage = () => {
 	const [posts, setPosts] = useState([]);
+
+	useEffect(() => {
+		const loadPosts = async () => {
+			const postsData = await getUser();
+
+			setUser(postsData);
+		};
+
+		loadPosts();
+	}, [router]);
+
 
 
 	return (

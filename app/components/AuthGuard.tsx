@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getUser } from "@/services/auth";
+import { getUser } from "@/services/auth_service";
 
 interface AuthGuardProps {
 	children: React.ReactNode;

@@ -1,0 +1,81 @@
+"use client"
+import APP_MESSAGES from "@/const/app_messages";
+import API from "./api_service";
+import APP_ROUTES from "@/const/app_routes";
+import { Post } from "@/app/(protected)/posts/data/schema";
+
+const API_POST_ROUTE = "/posts"
+
+const TOKEN_KEY = "token";
+
+export const getPosts = async (): Promise<Post[]|null> => {
+	const token = localStorage.getItem(TOKEN_KEY);
+	// const token = document.cookie
+	// 	.split("; ")
+	// 	.find((row) => row.startsWith(`$TOKEN_KEY=`))
+	// 	?.split("=")[1];
+
+	if (token) {
+		const { data } = await API.get<Post[]>(API_POST_ROUTE, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		return data;
+	}
+	return null;
+};
+export const storePost = async (post : Post): Promise<Post|null> => {
+	const token = localStorage.getItem(TOKEN_KEY);
+	// const token = document.cookie
+	// 	.split("; ")
+	// 	.find((row) => row.startsWith(`$TOKEN_KEY=`))
+	// 	?.split("=")[1];
+
+	if (token) {
+		const { data } = await API.post<Post>(API_POST_ROUTE, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(post),
+		});
+		return data;
+	}
+	// TODO manage error messages
+	return null;
+};
+export const updatePost = async (post : Post): Promise<Post|null> => {
+	const token = localStorage.getItem(TOKEN_KEY);
+	// const token = document.cookie
+	// 	.split("; ")
+	// 	.find((row) => row.startsWith(`$TOKEN_KEY=`))
+	// 	?.split("=")[1];
+
+	if (token) {
+		const { data } = await API.post<Post>(API_POST_ROUTE + '/'+post.id, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(post),
+		});
+		return data;
+	}
+	return null;
+};
+export const deletePost = async (post : Post): Promise<Post|null> => {
+	const token = localStorage.getItem(TOKEN_KEY);
+	// const token = document.cookie
+	// 	.split("; ")
+	// 	.find((row) => row.startsWith(`$TOKEN_KEY=`))
+	// 	?.split("=")[1];
+
+	if (token) {
+		const { data } = await API.delete<Post>(API_POST_ROUTE + '/'+post.id, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		return data;
+	}
+	return null;
+};

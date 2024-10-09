@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
-import { getUser, logout } from "../../services/auth";
+import { getUser, logout } from "../../services/auth_service";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { CircleUser, Menu, Package2, Search } from "lucide-react";
