@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import APP_ROUTES from "./const/app_routes";
+import AppRouter from "next/dist/client/components/app-router";
 
 export function middleware(req: NextRequest) {
 	const token = req.cookies.get("token"); 
@@ -13,6 +14,9 @@ export function middleware(req: NextRequest) {
 		// 	return NextResponse.next();
 		// }
 		return NextResponse.redirect(new URL(APP_ROUTES.login, req.url));
+	}
+	if(token && [APP_ROUTES.login, APP_ROUTES.register].includes(pathname)){
+		return NextResponse.redirect(req.url);
 	}
 	return NextResponse.next();
 }

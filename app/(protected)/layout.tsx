@@ -1,31 +1,25 @@
-// import { ReactNode } from "react";
-
-// interface AuthLayoutProps {
-// 	children: ReactNode;
-// }
-
-// export default function AuthLayout({ children }: AuthLayoutProps) {
-// 	return (
-// 		<div className="auth-layout">
-// 			<header>
-// 				<h1>Welcome to the App</h1>
-// 			</header>
-// 			<main>{children}</main>
-// 		</div>
-// 	);
-// }
-
-
-// app/(protected)/layout.tsx
-import { ReactNode } from 'react';
-import { getUser } from '../../services/auth';
+'use client';
+import { ReactNode, useEffect, useState } from 'react';
+import { getUser, logout } from '../../services/auth';
+import { useRouter } from 'next/navigation';
 
 interface ProtectedLayoutProps {
   children: ReactNode;
 }
 
-export default async function ProtectedLayout({ children }: ProtectedLayoutProps) {
-  const user = await getUser();
+export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
+  const router = useRouter();
+  const [user, setUser] = useState<User|null>(null);
+
+	useEffect(() => {
+		const loadUser = async () => {
+			const userData = await getUser();
+
+      setUser(userData);
+		};
+
+		loadUser();
+	}, [router]);
 
   if (!user) {
     // Redirect to login if the user is not authenticated
@@ -37,6 +31,10 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
       <header>
         <nav>
           <p>Logged in as: {user.first_name}</p>
+
+          <button onClick={logout}>
+            Logout
+          </button>
         </nav>
       </header>
       <main>{children}</main>

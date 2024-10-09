@@ -7,5 +7,4 @@ const APP_ROUTES = {
     posts: '/posts',
     error404: '/404',
 }
-
 export default APP_ROUTES;

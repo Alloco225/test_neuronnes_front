@@ -2,11 +2,12 @@ import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-export function AlertDestructive(message:string) {
+export function AlertError({message, }: {message:string}) {
 	return (
-		<Alert variant="destructive">
+		<Alert variant="destructive" className="flex items-center justify-start">
 			<ExclamationTriangleIcon className="h-4 w-4" />
-			<AlertTitle>Error</AlertTitle>
+			{/* <AlertTitle>Erreur</AlertTitle> */}
+			<span></span>
 			<AlertDescription>{message}</AlertDescription>
 		</Alert>
 	);

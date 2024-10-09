@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { AlertError } from "@/app/components/AlertError";
+import Link from "next/link";
 
 // export const metadata = {
 // 	title: "Next.js",
@@ -31,9 +33,9 @@ const Login = () => {
 	};
 
 	return (
-		<form onSubmit={handleLogin} className="h-full w-full flex justify-center items-center bg-blue-400">
+		<form onSubmit={handleLogin} className="h-full w-full flex justify-center items-center bg-gray-500">
 			<div className="">
-				<h2 className="font-bold text-3xl text-center mb-3">{APP_MESSAGES.app_name}</h2>
+				<h2 className="font-bold text-3xl text-center mb-3 text-primary">{APP_MESSAGES.app_name}</h2>
 				<Card className="w-full max-w-sm">
 					<CardHeader className="text-center">
 						<CardTitle className="text-2xl">{APP_MESSAGES.login}</CardTitle>
@@ -49,10 +51,24 @@ const Login = () => {
 							<Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 						</div>
 					</CardContent>
-					{error && <p>{error}</p>}
+
+					{error && (
+						<div className="p-5 pt-0">
+							<AlertError message={error} />
+						</div>
+					)}
 					<CardFooter>
 						<Button className="w-full">{APP_MESSAGES.submit_login}</Button>
 					</CardFooter>
+
+					<div className="px-5 flex justify-between items-center py-3">
+						<CardDescription>{APP_MESSAGES.no_account}</CardDescription>
+						<Button variant="link">
+							<Link href={APP_ROUTES.register}>
+							{APP_MESSAGES.submit_register}
+							</Link>
+						</Button>
+					</div>
 				</Card>
 			</div>
 		</form>
