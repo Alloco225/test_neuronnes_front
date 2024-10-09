@@ -16,7 +16,8 @@ export function middleware(req: NextRequest) {
 		return NextResponse.redirect(new URL(APP_ROUTES.login, req.url));
 	}
 	if(token && [APP_ROUTES.login, APP_ROUTES.register].includes(pathname)){
-		return NextResponse.redirect(req.url);
+		return NextResponse.redirect(APP_ROUTES.posts);
+		// return NextResponse.redirect(req.url);
 	}
 	return NextResponse.next();
 }

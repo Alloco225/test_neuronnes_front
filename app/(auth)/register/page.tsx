@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AlertError } from "@/app/components/AlertError";
+import Link from "next/link";
 
 // export const metadata = {
 // 	title: "Next.js",
@@ -84,7 +85,11 @@ const Login = () => {
 
 					<div className="px-5 flex justify-between items-center py-3">
 						<CardDescription>{APP_MESSAGES.has_account}</CardDescription>
-						<Button variant="link">{APP_MESSAGES.submit_login}</Button>
+						<Button variant="link">
+                            <Link href={APP_ROUTES.login}>
+							{APP_MESSAGES.submit_login}
+							</Link>
+                        </Button>
 					</div>
 				</Card>
 			</div>

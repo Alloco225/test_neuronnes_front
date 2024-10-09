@@ -34,8 +34,17 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 	}, [router]);
 
 	if (!user) {
+		// router.push(APP_ROUTES.login);
+		return (
+			<div className="flex flex-col bg-gray-100 justify-center items-center gap-3 h-full">
+				<article className="flex flex-col rounded-lg bg-white border shadow-sm text-center items-center p-10 mb-10">
+					<AppLogo size={10} className="mb-3" />
+					<h2 className="font-bold text-xl">Vous n'êtes pas connecté</h2>
+					<p>Veuillez vous connecter pour continuer</p>
+				</article>
+			</div>
+		);
 		// Redirect to login if the user is not authenticated
-		return <p>Unauthorized. Please log in.</p>;
 	}
 
 	return (
@@ -55,7 +64,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 					<SheetTrigger asChild>
 						<Button variant="outline" size="icon" className="shrink-0 md:hidden">
 							<Menu className="h-5 w-5" />
-							<span className="sr-only">Toggle navigation menu</span>
+							<span className="sr-only">Ouvrir/fermer le menu de navigation</span>
 						</Button>
 					</SheetTrigger>
 					<SheetContent side="left">
@@ -78,7 +87,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 							<Input type="search" placeholder={APP_MESSAGES.posts.search} className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]" />
 						</div>
 					</form>
-					<h3 className="font-semibold text-2xl">{user.first_name + " " + user.last_name}</h3>
+					<h3 className="font-semibold">{user.first_name + " " + user.last_name}</h3>
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="secondary" size="icon" className="rounded-full">
