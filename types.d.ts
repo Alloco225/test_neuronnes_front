@@ -18,3 +18,11 @@ interface User {
 	age: string;
 	email: string;
 }
+interface Post {
+	id: number;
+	title: string;
+	content: string;
+	image_url: string;
+	last_update: string;
+	created_at: string;
+}

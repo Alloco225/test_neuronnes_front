@@ -43,8 +43,8 @@ export default function DataTableToolbar<TData>({ table }: DataTableToolbarProps
 
 			<div className="flex">
 				<DataTableViewOptions table={table} />
-				<Link href={APP_ROUTES.posts.create}>
-					<Button>
+				<Link href={APP_ROUTES.posts.create} className="ml-3">
+					<Button >
 						<Plus className="mr-2 h-4 w-4" /> Ajouter un post
 					</Button>
 				</Link>

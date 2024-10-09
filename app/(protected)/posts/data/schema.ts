@@ -1,12 +1,7 @@
 import { z } from "zod";
 
 export const postSchema = z.object({
-	id: z.string(),
-	title: z.string(),
-	content: z.string(),
-	image_url: z.string(),
-	last_update: z.string(),
-	created_at: z.string(),
+	title: z.string({ message: "Oups, il manque le titre" }),
+	content: z.string({ message: "Vous avez oublié d'écrire votre post" }).min(3, { message: "Trop court comme post" }),
 });
 
-export type Post = z.infer<typeof postSchema>;

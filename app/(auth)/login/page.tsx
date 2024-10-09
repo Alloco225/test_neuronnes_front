@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AlertError } from "@/app/components/AlertError";
 import Link from "next/link";
+import AppLogo from "@/app/components/AppLogo";
 
 // export const metadata = {
 // 	title: "Next.js",
@@ -33,8 +34,9 @@ const Login = () => {
 	};
 
 	return (
-		<form onSubmit={handleLogin} className="h-full w-full flex justify-center items-center bg-gray-500">
+		<form onSubmit={handleLogin} className="h-full w-full flex justify-center items-center bg-gray-200">
 			<div className="">
+				<AppLogo className="mx-auto w-24 h-24 text-primary mb-3"/>
 				<h2 className="font-bold text-3xl text-center mb-3 text-primary">{APP_MESSAGES.app_name}</h2>
 				<Card className="w-full max-w-sm">
 					<CardHeader className="text-center">

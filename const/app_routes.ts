@@ -7,7 +7,7 @@ const APP_ROUTES = {
     // posts: '/posts',
     posts: {
         index: '/posts',
-        create: '/posts/new',
+        create: '/posts/nouveau',
     },
     error404: '/404',
 }

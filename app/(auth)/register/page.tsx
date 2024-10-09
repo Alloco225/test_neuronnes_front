@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AlertError } from "@/app/components/AlertError";
 import Link from "next/link";
+import AppLogo from "@/app/components/AppLogo";
 
 // export const metadata = {
 // 	title: "Next.js",
@@ -30,15 +31,16 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			await register({ first_name: firstName, last_name: lastName, age: age, email, password, password_confirmation: passwordConfirmation });
-			router.push(APP_ROUTES.posts);
+			router.push(APP_ROUTES.posts.index);
 		} catch (err) {
 			setError(APP_MESSAGES.auth.failed);
 		}
 	};
 
 	return (
-		<form onSubmit={handleLogin} className="h-full w-full flex justify-center items-center bg-gray-500">
+		<form onSubmit={handleLogin} className="h-full w-full flex justify-center items-center">
 			<div className="">
+				<AppLogo className="mx-auto w-24 h-24 text-primary mb-3" />
 				<h2 className="font-bold text-3xl text-center mb-3 text-primary">{APP_MESSAGES.app_name}</h2>
 				<Card className="w-full max-w-sm">
 					<CardHeader className="text-center">
@@ -86,10 +88,8 @@ const Login = () => {
 					<div className="px-5 flex justify-between items-center py-3">
 						<CardDescription>{APP_MESSAGES.has_account}</CardDescription>
 						<Button variant="link">
-                            <Link href={APP_ROUTES.login}>
-							{APP_MESSAGES.submit_login}
-							</Link>
-                        </Button>
+							<Link href={APP_ROUTES.login}>{APP_MESSAGES.submit_login}</Link>
+						</Button>
 					</div>
 				</Card>
 			</div>

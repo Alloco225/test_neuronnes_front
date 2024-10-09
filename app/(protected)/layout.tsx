@@ -46,9 +46,9 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 	}
 
 	return (
-		<div>
-			<header className="sticky top-0 flex justify-between h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-				<nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+		<div className="bg-gray-100 h-full flex flex-col">
+			<header className="sticky top-0 flex justify-between h-16 items-center gap-4 border-b bg-background px-4 md:px-6 bg-white">
+				<nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 ">
 					<Link href="#" className="flex items-center gap-2 text-lg font-semibold md:text-base">
 						<AppLogo />
 						<span className="sr-only">{APP_MESSAGES.app_name}</span>
@@ -77,7 +77,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 						</nav>
 					</SheetContent>
 				</Sheet>
-        
+
 				<div className="flex w-full justify-end items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
 					<h3 className="font-semibold">{user.first_name + " " + user.last_name}</h3>
 					<DropdownMenu>
@@ -101,7 +101,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 					</DropdownMenu>
 				</div>
 			</header>
-			<main>{children}</main>
+			<main className="flex-grow">{children}</main>
 		</div>
 	);
 }

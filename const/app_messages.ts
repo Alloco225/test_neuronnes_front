@@ -18,6 +18,9 @@ const APP_MESSAGES = {
 	register_cta: "Créez un compte pour accéder à votre Diary",
 	has_account: "Vous avez déjà un compte ?",
 	submit_register: "S'inscrire",
+	title: "Titre",
+	content: "Contenu",
+	submit: "Sauvegarder",
 	posts: {
 		search: "Trouver des postes",
 	},

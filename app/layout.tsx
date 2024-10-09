@@ -25,9 +25,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className="h-full">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
-				{children}
-			</body>
+			<head>
+				<link rel="icon" href="/favicon.ico" sizes="any" />
+			</head>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>{children}</body>
 		</html>
 	);
 }

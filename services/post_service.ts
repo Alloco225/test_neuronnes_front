@@ -2,7 +2,8 @@
 import APP_MESSAGES from "@/const/app_messages";
 import API from "./api_service";
 import APP_ROUTES from "@/const/app_routes";
-import { Post } from "@/app/(protected)/posts/data/schema";
+import { postSchema } from "@/app/(protected)/posts/data/schema";
+import { z } from "zod";
 
 const API_POST_ROUTE = "/posts"
 
@@ -25,19 +26,26 @@ export const getPosts = async (): Promise<Post[]|null> => {
 	}
 	return null;
 };
-export const storePost = async (post : Post): Promise<Post|null> => {
+export const storePost = async (post: z.infer<typeof postSchema>, imageFile?: File): Promise<Post | null> => {
 	const token = localStorage.getItem(TOKEN_KEY);
 	// const token = document.cookie
 	// 	.split("; ")
 	// 	.find((row) => row.startsWith(`$TOKEN_KEY=`))
 	// 	?.split("=")[1];
 
+	var formData = new FormData();
+	formData.append("image_file", imageFile!);
+	formData.append("title", post.title);
+	formData.append("content", post.content);
+
+	console.log("storePost", post, formData.get("title"), formData.get("content"), formData.get("image_file"));
+
 	if (token) {
-		const { data } = await API.post<Post>(API_POST_ROUTE, {
+		const { data } = await API.post<Post>(API_POST_ROUTE, formData, {
 			headers: {
 				Authorization: `Bearer ${token}`,
+				"Content-Type": "multipart/form-data",
 			},
-			body: JSON.stringify(post),
 		});
 		return data;
 	}
